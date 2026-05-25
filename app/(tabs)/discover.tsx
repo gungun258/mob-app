@@ -251,10 +251,10 @@ const styles = StyleSheet.create({
 
   // Horizontal Seller Cards
   sellerHorizontalCard: {
-    width: 130,
+    width: 160,
     backgroundColor: '#FFF',
-    borderRadius: 16,
-    padding: 12,
+    borderRadius: 20,
+    padding: 16,
     alignItems: 'flex-start',
     ...Shadows.sm,
     borderWidth: 1,
@@ -263,13 +263,13 @@ const styles = StyleSheet.create({
   sellerSquareAvatar: {
     width: '100%',
     aspectRatio: 1,
-    borderRadius: 12,
+    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10,
+    marginBottom: 16,
   },
   sellerSquareAvatarText: {
-    fontSize: 40,
+    fontSize: 48,
     fontWeight: '800',
     color: '#FFF',
   },
@@ -278,33 +278,33 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   sellerHorizontalName: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '700',
     color: Colors.textPrimary,
-    marginBottom: 2,
+    marginBottom: 4,
   },
   sellerHorizontalInfo: {
-    fontSize: 11,
+    fontSize: 13,
     color: Colors.textTertiary,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 3,
+    gap: 4,
   },
   ratingText: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '700',
     color: '#F59E0B',
   },
 
   // View All Card
   viewAllCard: {
-    width: 130,
-    height: 180, // matched to roughly the new card height
+    width: 160,
+    height: 220, // matched to roughly the new card height
     backgroundColor: '#F5F3FF', // subtle purple tint
-    borderRadius: 16,
+    borderRadius: 20,
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
