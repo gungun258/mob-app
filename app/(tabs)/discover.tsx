@@ -39,7 +39,7 @@ export default function DiscoverScreen() {
             <Ionicons name="search" size={20} color={Colors.textTertiary} />
             <TextInput
               style={styles.searchInput}
-              placeholder="Search sellers..."
+              placeholder="Search sellers, backgrounds..."
               placeholderTextColor={Colors.textTertiary}
               value={searchQuery}
               onChangeText={setSearchQuery}
@@ -63,22 +63,25 @@ export default function DiscoverScreen() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.horizontalList}
             keyExtractor={item => 'followed-' + item.id}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <TouchableOpacity
                 style={styles.sellerHorizontalCard}
                 activeOpacity={0.8}
                 onPress={() => router.push('/seller-profile')}
               >
-                <View style={styles.sellerAvatarContainer}>
-                  <LinearGradient colors={Colors.gradientHero} style={styles.avatarGradient}>
-                    <Image source={{ uri: item.avatar }} style={styles.sellerHorizontalAvatar} />
-                  </LinearGradient>
-                </View>
-                <Text style={styles.sellerHorizontalName} numberOfLines={1}>{item.name}</Text>
-                <Text style={styles.sellerHorizontalInfo}>{item.listings} Listings</Text>
-                <View style={styles.ratingRow}>
-                  <Ionicons name="star" size={12} color="#F59E0B" />
-                  <Text style={styles.ratingText}>4.9</Text>
+                <LinearGradient
+                  colors={index % 2 === 0 ? ['#C079FF', '#FF4B8B'] : ['#8F6EFF', '#F542A7']}
+                  style={styles.sellerSquareAvatar}
+                >
+                  <Text style={styles.sellerSquareAvatarText}>{item.name.charAt(0)}</Text>
+                </LinearGradient>
+                <View style={styles.sellerHorizontalInfoBox}>
+                  <Text style={styles.sellerHorizontalName} numberOfLines={1}>{item.name}</Text>
+                  <Text style={styles.sellerHorizontalInfo}>{item.listings} listings</Text>
+                  <View style={styles.ratingRow}>
+                    <Ionicons name="star" size={10} color="#F59E0B" />
+                    <Text style={styles.ratingText}>4.9</Text>
+                  </View>
                 </View>
               </TouchableOpacity>
             )}
@@ -104,29 +107,32 @@ export default function DiscoverScreen() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.horizontalList}
             keyExtractor={item => 'trending-' + item.id}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <TouchableOpacity
                 style={styles.sellerHorizontalCard}
                 activeOpacity={0.8}
                 onPress={() => router.push('/seller-profile')}
               >
-                <View style={styles.sellerAvatarContainer}>
-                  <LinearGradient colors={Colors.gradientButton} style={styles.avatarGradient}>
-                    <Image source={{ uri: item.avatar }} style={styles.sellerHorizontalAvatar} />
-                  </LinearGradient>
-                </View>
-                <Text style={styles.sellerHorizontalName} numberOfLines={1}>{item.name}</Text>
-                <Text style={styles.sellerHorizontalInfo}>{item.listings} Listings</Text>
-                <View style={styles.ratingRow}>
-                  <Ionicons name="star" size={12} color="#F59E0B" />
-                  <Text style={styles.ratingText}>4.8</Text>
+                <LinearGradient
+                  colors={index % 2 === 0 ? ['#38BDF8', '#0284C7'] : ['#2DD4BF', '#0F766E']}
+                  style={styles.sellerSquareAvatar}
+                >
+                  <Text style={styles.sellerSquareAvatarText}>{item.name.charAt(0)}</Text>
+                </LinearGradient>
+                <View style={styles.sellerHorizontalInfoBox}>
+                  <Text style={styles.sellerHorizontalName} numberOfLines={1}>{item.name}</Text>
+                  <Text style={styles.sellerHorizontalInfo}>{item.listings} listings</Text>
+                  <View style={styles.ratingRow}>
+                    <Ionicons name="star" size={10} color="#F59E0B" />
+                    <Text style={styles.ratingText}>4.8</Text>
+                  </View>
                 </View>
               </TouchableOpacity>
             )}
             ListFooterComponent={() => (
               <TouchableOpacity style={styles.viewAllCard} activeOpacity={0.8} onPress={() => router.push('/view-all-sellers')}>
                 <View style={styles.viewAllIconContainer}>
-                  <Ionicons name="arrow-forward" size={24} color={Colors.primary} />
+                  <Ionicons name="chevron-forward" size={24} color="#C079FF" />
                 </View>
                 <Text style={styles.viewAllCardText}>View All</Text>
               </TouchableOpacity>
@@ -137,7 +143,7 @@ export default function DiscoverScreen() {
         {/* Explore All Sellers Button */}
         <TouchableOpacity style={styles.exploreAllBtn} activeOpacity={0.85} onPress={() => router.push('/view-all-sellers')}>
           <LinearGradient
-            colors={Colors.gradientButton}
+            colors={['#F542A7', '#FF2E93']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.exploreAllGradient}
@@ -150,21 +156,16 @@ export default function DiscoverScreen() {
         {/* Become a Seller Card */}
         <View style={styles.promoCardContainer}>
           <LinearGradient
-            colors={['#FFF', '#F8F7FF']}
+            colors={['#F5F8FF', '#F0F5FF']}
             style={styles.promoCard}
           >
-            <View style={styles.promoIconContainer}>
-              <LinearGradient colors={['#8B5CF6', '#3B82F6']} style={styles.promoIconBg}>
-                <Ionicons name="storefront" size={24} color="#FFF" />
-              </LinearGradient>
-            </View>
             <View style={styles.promoTextContainer}>
               <Text style={styles.promoTitle}>Become a Seller</Text>
               <Text style={styles.promoSubtitle}>Share your backgrounds and earn credits from each sale</Text>
             </View>
             <TouchableOpacity style={styles.promoBtn} activeOpacity={0.8}>
               <LinearGradient
-                colors={Colors.gradientButton}
+                colors={['#8B5CF6', '#7C3AED']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.promoBtnGradient}
@@ -175,7 +176,6 @@ export default function DiscoverScreen() {
           </LinearGradient>
         </View>
 
-        <View style={{ height: 100 }} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -185,9 +185,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
+    ...(Platform.OS === 'web' ? { height: '100dvh', overflow: 'hidden' } : {}),
   },
   scrollContent: {
-    paddingBottom: 20,
+    paddingBottom: 120,
+    flexGrow: 1,
   },
   header: {
     paddingHorizontal: 20,
@@ -250,40 +252,38 @@ const styles = StyleSheet.create({
   sellerHorizontalCard: {
     width: 140,
     backgroundColor: '#FFF',
-    borderRadius: 24,
-    padding: 16,
-    alignItems: 'center',
+    borderRadius: 20,
+    padding: 12,
+    alignItems: 'flex-start',
     ...Shadows.sm,
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.02)',
   },
-  sellerAvatarContainer: {
-    marginBottom: 12,
-  },
-  avatarGradient: {
-    width: 68,
-    height: 68,
-    borderRadius: 34,
-    padding: 3,
+  sellerSquareAvatar: {
+    width: '100%',
+    aspectRatio: 1,
+    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 12,
   },
-  sellerHorizontalAvatar: {
-    width: 62,
-    height: 62,
-    borderRadius: 31,
-    borderWidth: 2,
-    borderColor: '#FFF',
+  sellerSquareAvatarText: {
+    fontSize: 48,
+    fontWeight: '800',
+    color: '#FFF',
+  },
+  sellerHorizontalInfoBox: {
+    width: '100%',
+    alignItems: 'flex-start',
   },
   sellerHorizontalName: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '700',
     color: Colors.textPrimary,
-    marginBottom: 4,
-    textAlign: 'center',
+    marginBottom: 2,
   },
   sellerHorizontalInfo: {
-    fontSize: 12,
+    fontSize: 11,
     color: Colors.textTertiary,
     marginBottom: 8,
   },
@@ -291,42 +291,32 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-    backgroundColor: '#F8F9FA',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
   },
   ratingText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: Colors.textSecondary,
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#F59E0B',
   },
 
   // View All Card
   viewAllCard: {
-    width: 140,
-    backgroundColor: '#F8F7FF',
-    borderRadius: 24,
+    width: 120,
+    backgroundColor: 'transparent',
+    borderRadius: 20,
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(139, 92, 246, 0.1)',
+    borderWidth: 1.5,
+    borderStyle: 'dashed',
+    borderColor: '#C079FF',
   },
   viewAllIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#FFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 12,
-    ...Shadows.sm,
+    marginBottom: 8,
   },
   viewAllCardText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
-    color: Colors.primary,
+    color: '#C079FF',
   },
 
   // Explore All Button
@@ -357,39 +347,28 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   promoCard: {
-    borderRadius: 24,
+    borderRadius: 20,
     padding: 24,
     borderWidth: 1,
     borderColor: 'rgba(139, 92, 246, 0.1)',
     ...Shadows.premiumCard,
-    alignItems: 'center',
-  },
-  promoIconContainer: {
-    marginBottom: 16,
-  },
-  promoIconBg: {
-    width: 64,
-    height: 64,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
   promoTextContainer: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: 20,
   },
   promoTitle: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '800',
     color: Colors.textPrimary,
     marginBottom: 8,
   },
   promoSubtitle: {
-    fontSize: 14,
+    fontSize: 13,
     color: Colors.textSecondary,
-    textAlign: 'center',
+    textAlign: 'left',
     lineHeight: 20,
-    paddingHorizontal: 10,
   },
   promoBtn: {
     width: '100%',
