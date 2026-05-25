@@ -89,6 +89,14 @@ export const topSellers = [
     listings: 201,
     verified: true,
   },
+  {
+    id: '6',
+    name: 'Emma White',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
+    followers: '19.4K',
+    listings: 167,
+    verified: true,
+  },
 ];
 
 export const followingListings = [
