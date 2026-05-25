@@ -305,11 +305,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
-    ...(Platform.OS === 'web' ? { height: '100vh', overflow: 'hidden' } : {}),
+    ...(Platform.OS === 'web' ? { height: '100dvh', overflow: 'hidden' } : {}),
   },
   scrollContent: {
     paddingTop: 110, // Increased to fully clear the 90px tall floating header
-    paddingBottom: 100, // Reduced to match Figma spacing
+    paddingBottom: 120, // Increased slightly to ensure it fully clears the tab bar on all devices
     flexGrow: 1, // Ensures scroll view expands properly
   },
   // Header
