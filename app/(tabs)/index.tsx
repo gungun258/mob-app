@@ -29,6 +29,8 @@ const GradientText = ({ text, style }: { text: string; style: any }) => {
   if (Platform.OS === 'web') {
     return (
       <Text
+        numberOfLines={1}
+        adjustsFontSizeToFit
         style={[
           style,
           {
@@ -37,6 +39,9 @@ const GradientText = ({ text, style }: { text: string; style: any }) => {
             WebkitTextFillColor: 'transparent',
             color: 'transparent',
             display: 'inline-block',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           } as any,
         ]}
       >
@@ -47,8 +52,8 @@ const GradientText = ({ text, style }: { text: string; style: any }) => {
 
   return (
     <MaskedView
-      style={{ flexDirection: 'row', height: 34 }}
-      maskElement={<Text style={[style, { backgroundColor: 'transparent' }]}>{text}</Text>}
+      style={{ flexDirection: 'row', height: 34, flexShrink: 1 }}
+      maskElement={<Text numberOfLines={1} adjustsFontSizeToFit style={[style, { backgroundColor: 'transparent' }]}>{text}</Text>}
     >
       <LinearGradient
         colors={['#5B8CFF', '#9B5CFF', '#F542A7']}
@@ -56,7 +61,7 @@ const GradientText = ({ text, style }: { text: string; style: any }) => {
         end={{ x: 1, y: 0 }}
         style={{ flex: 1 }}
       >
-        <Text style={[style, { opacity: 0 }]}>{text}</Text>
+        <Text numberOfLines={1} adjustsFontSizeToFit style={[style, { opacity: 0 }]}>{text}</Text>
       </LinearGradient>
     </MaskedView>
   );
@@ -76,9 +81,9 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={[styles.header, Platform.OS === 'web' && ({ backdropFilter: 'blur(12px)' } as any)]}>
         <View style={styles.headerLeft}>
-          <View>
+          <View style={{ flexShrink: 1 }}>
             <GradientText text="AI Photo Studio" style={styles.appNameText} />
-            <Text style={styles.tagline}>Transform your moments</Text>
+            <Text style={styles.tagline} numberOfLines={1}>Transform your moments</Text>
           </View>
         </View>
         <View style={styles.headerRight}>
@@ -129,9 +134,9 @@ export default function HomeScreen() {
         {/* Trending Backgrounds */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <View style={styles.sectionTitleRow}>
+            <View style={[styles.sectionTitleRow, { flexShrink: 1, marginRight: 8 }]}>
               <Ionicons name="trending-up" size={20} color="#3B82F6" />
-              <Text style={styles.sectionTitle}>Trending Backgrounds</Text>
+              <Text style={styles.sectionTitle} numberOfLines={1} adjustsFontSizeToFit>Trending Backgrounds</Text>
             </View>
             <TouchableOpacity>
               <Text style={styles.seeAll}>View All</Text>
@@ -165,7 +170,7 @@ export default function HomeScreen() {
         {/* Top Sellers */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Top Sellers</Text>
+            <Text style={[styles.sectionTitle, { flexShrink: 1, marginRight: 8 }]} numberOfLines={1} adjustsFontSizeToFit>Top Sellers</Text>
             <TouchableOpacity onPress={() => router.push('/view-all-sellers')}>
               <Text style={styles.seeAll}>View All</Text>
             </TouchableOpacity>
@@ -215,7 +220,7 @@ export default function HomeScreen() {
         {/* Listings From Following */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>From Sellers You Follow</Text>
+            <Text style={[styles.sectionTitle, { flexShrink: 1, marginRight: 8 }]} numberOfLines={1} adjustsFontSizeToFit>From Sellers You Follow</Text>
             <TouchableOpacity>
               <Text style={styles.seeAll}>View All</Text>
             </TouchableOpacity>
@@ -247,7 +252,7 @@ export default function HomeScreen() {
         {/* Public Generations */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Public Generations</Text>
+            <Text style={[styles.sectionTitle, { flexShrink: 1, marginRight: 8 }]} numberOfLines={1} adjustsFontSizeToFit>Public Generations</Text>
             <TouchableOpacity>
               <Text style={styles.seeAll}>View All</Text>
             </TouchableOpacity>
@@ -265,15 +270,15 @@ export default function HomeScreen() {
                     colors={index % 2 === 0 ? ['#FCA5A5', '#F87171'] : ['#F9A8D4', '#F472B6']}
                     style={styles.publicGenGradient}
                   />
-                </View>
-                <View style={styles.publicGenInfo}>
-                  <View style={styles.publicGenUserRow}>
-                    <Ionicons name="person-outline" size={12} color="#6B7280" />
-                    <Text style={styles.publicGenUserName}>{item.user}</Text>
-                  </View>
-                  <View style={styles.publicGenLikes}>
-                    <Ionicons name="heart" size={12} color="#EF4444" />
-                    <Text style={styles.publicGenLikesText}>{item.likes}</Text>
+                  <View style={styles.publicGenFloatingInfo}>
+                    <View style={styles.publicGenUserRow}>
+                      <Ionicons name="person-outline" size={12} color="#6B7280" />
+                      <Text style={styles.publicGenUserName}>{item.user}</Text>
+                    </View>
+                    <View style={styles.publicGenLikes}>
+                      <Ionicons name="heart" size={12} color="#EF4444" />
+                      <Text style={styles.publicGenLikesText}>{item.likes}</Text>
+                    </View>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -361,11 +366,11 @@ const styles = StyleSheet.create({
   creditsChip: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 8,
     backgroundColor: '#FF9F0A', // matching exact orange-yellow
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 8, // reduced border radius as requested
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 16, // reduced from 100
     shadowColor: '#FF9F0A',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -484,10 +489,9 @@ const styles = StyleSheet.create({
   gridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: 24,
+    paddingHorizontal: 20, // slightly reduced padding for mobile
     justifyContent: 'space-between',
-    columnGap: 8,
-    rowGap: 24,
+    rowGap: 20, // slightly reduced
     alignItems: 'flex-start',
   },
 
@@ -528,15 +532,15 @@ const styles = StyleSheet.create({
     color: '#1F2937',
   },
   trendingInfo: {
-    paddingHorizontal: 24,
-    paddingTop: 24,
-    paddingBottom: 24,
+    paddingHorizontal: 12,
+    paddingTop: 12,
+    paddingBottom: 16,
   },
   trendingTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
     color: '#1C1C1E',
-    marginBottom: 20,
+    marginBottom: 8,
   },
   trendingStatsRow: {
     flexDirection: 'row',
@@ -544,7 +548,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   trendingPrice: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
     color: '#007AFF',
   },
@@ -650,23 +654,23 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   followingSimpleInfo: {
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 24,
+    paddingHorizontal: 12,
+    paddingTop: 12,
+    paddingBottom: 16,
   },
   followingSimpleSellerName: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#8E8E93',
     marginBottom: 4,
   },
   followingSimpleTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
     color: '#1C1C1E',
-    marginBottom: 20,
+    marginBottom: 8,
   },
   followingSimplePrice: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
     color: '#007AFF',
   },
@@ -677,9 +681,9 @@ const styles = StyleSheet.create({
     marginTop: 28,
     borderRadius: 16,
     padding: 24,
-    backgroundColor: '#F5F8FF',
+    backgroundColor: '#F5F3FF',
     borderWidth: 1,
-    borderColor: '#D8E2FF',
+    borderColor: '#EDE9FE',
     alignItems: 'flex-start',
     justifyContent: 'center',
   },
@@ -690,9 +694,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   referralSubtitleSimple: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#4B5563',
     marginBottom: 20,
+    lineHeight: 20,
   },
   referralBtnSimple: {
     width: '100%',
@@ -711,31 +716,37 @@ const styles = StyleSheet.create({
   publicGenCard: {
     width: '49%',
     backgroundColor: '#FFF',
-    borderRadius: 24,
+    borderRadius: 20,
     overflow: 'hidden',
-    ...Shadows.md,
+    ...Shadows.sm,
   },
   publicGenImageContainer: {
     width: '100%',
-    aspectRatio: 1.68,
+    aspectRatio: 1, // square ratio for public gens
   },
   publicGenGradient: {
     ...StyleSheet.absoluteFillObject,
   },
-  publicGenInfo: {
+  publicGenFloatingInfo: {
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    right: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 16,
+    backgroundColor: 'rgba(255,255,255,0.95)',
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderRadius: 12,
   },
   publicGenUserRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 4,
   },
   publicGenUserName: {
-    fontSize: 13,
+    fontSize: 11,
     fontWeight: '600',
     color: '#4B5563',
   },
@@ -745,7 +756,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   publicGenLikesText: {
-    fontSize: 13,
+    fontSize: 11,
     fontWeight: '600',
     color: '#EF4444',
   },
