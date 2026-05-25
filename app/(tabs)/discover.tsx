@@ -198,11 +198,11 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   headerTitle: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: '700',
     color: '#1F2937',
     letterSpacing: -0.5,
-    lineHeight: 38,
+    lineHeight: 32,
   },
 
   // Search
