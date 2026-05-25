@@ -307,6 +307,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
+    ...(Platform.OS === 'web' ? { height: '100vh', overflow: 'hidden' } : {}),
   },
   scrollContent: {
     paddingTop: 110, // Increased to fully clear the 90px tall floating header
