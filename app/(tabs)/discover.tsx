@@ -60,7 +60,7 @@ export default function DiscoverScreen() {
           </View>
           <FlatList
             horizontal
-            data={topSellers.slice(0, 3)}
+            data={topSellers.slice(0, 4)}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.horizontalList}
             keyExtractor={item => 'followed-' + item.id}
@@ -104,7 +104,7 @@ export default function DiscoverScreen() {
           </View>
           <FlatList
             horizontal
-            data={topSellers.slice(2, 5)}
+            data={topSellers.slice(2, 6)}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.horizontalList}
             keyExtractor={item => 'trending-' + item.id}
