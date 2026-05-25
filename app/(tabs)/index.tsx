@@ -296,8 +296,6 @@ export default function HomeScreen() {
             <Text style={styles.referralBtnSimpleText}>Start Referring</Text>
           </View>
         </TouchableOpacity>
-
-        <View style={{ height: 100 }} />
       </ScrollView>
     </SafeAreaView>
   );
