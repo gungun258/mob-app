@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
   },
   // Header
   header: {
-    position: 'absolute',
+    position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
     top: 0,
     left: 0,
     right: 0,
