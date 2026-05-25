@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFF',
-    borderRadius: 12,
+    borderRadius: 24, // perfect pill shape for 48px height
     paddingHorizontal: 16,
     height: 48,
     gap: 12,
@@ -238,22 +238,22 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '700',
     color: Colors.textPrimary,
     letterSpacing: -0.3,
   },
   horizontalList: {
-    paddingHorizontal: 20,
-    gap: 16,
+    paddingHorizontal: 16,
+    gap: 12,
   },
 
   // Horizontal Seller Cards
   sellerHorizontalCard: {
-    width: 160,
+    width: 108,
     backgroundColor: '#FFF',
-    borderRadius: 20,
-    padding: 12,
+    borderRadius: 12,
+    padding: 8,
     alignItems: 'flex-start',
     ...Shadows.sm,
     borderWidth: 1,
@@ -262,13 +262,13 @@ const styles = StyleSheet.create({
   sellerSquareAvatar: {
     width: '100%',
     aspectRatio: 1,
-    borderRadius: 16,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   sellerSquareAvatarText: {
-    fontSize: 48,
+    fontSize: 32,
     fontWeight: '800',
     color: '#FFF',
   },
@@ -277,53 +277,54 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   sellerHorizontalName: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '700',
     color: Colors.textPrimary,
     marginBottom: 2,
   },
   sellerHorizontalInfo: {
-    fontSize: 11,
+    fontSize: 10,
     color: Colors.textTertiary,
-    marginBottom: 8,
+    marginBottom: 6,
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 2,
   },
   ratingText: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '700',
     color: '#F59E0B',
   },
 
   // View All Card
   viewAllCard: {
-    width: 140,
-    backgroundColor: 'transparent',
-    borderRadius: 20,
+    width: 108,
+    height: 140, // match standard card height
+    backgroundColor: '#F5F3FF', // subtle purple tint
+    borderRadius: 12,
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1.5,
     borderStyle: 'dashed',
-    borderColor: '#C079FF',
+    borderColor: '#7C3AED',
   },
   viewAllIconContainer: {
-    marginBottom: 8,
+    marginBottom: 4,
   },
   viewAllCardText: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#C079FF',
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#7C3AED',
   },
 
   // Explore All Button
   exploreAllBtn: {
-    marginHorizontal: 20,
+    marginHorizontal: 16,
     marginTop: 32,
-    borderRadius: 20,
+    borderRadius: 12,
     overflow: 'hidden',
     ...Shadows.premiumButton,
   },
@@ -332,23 +333,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
-    paddingVertical: 18,
-    borderRadius: 20,
+    paddingVertical: 14, // adjusted to roughly 48px height
+    borderRadius: 12,
   },
   exploreAllText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '700',
     color: '#FFF',
   },
 
   // Promo Card
   promoCardContainer: {
-    marginHorizontal: 20,
+    marginHorizontal: 16,
     marginTop: 32,
   },
   promoCard: {
-    borderRadius: 20,
-    padding: 24,
+    borderRadius: 16,
+    padding: 16,
     borderWidth: 1,
     borderColor: 'rgba(139, 92, 246, 0.1)',
     ...Shadows.premiumCard,
@@ -356,13 +357,13 @@ const styles = StyleSheet.create({
   },
   promoTextContainer: {
     alignItems: 'flex-start',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   promoTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '800',
     color: Colors.textPrimary,
-    marginBottom: 8,
+    marginBottom: 4,
   },
   promoSubtitle: {
     fontSize: 13,
