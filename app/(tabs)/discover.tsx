@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
 
   // Horizontal Seller Cards
   sellerHorizontalCard: {
-    width: 140,
+    width: 160,
     backgroundColor: '#FFF',
     borderRadius: 20,
     padding: 12,
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
 
   // View All Card
   viewAllCard: {
-    width: 120,
+    width: 140,
     backgroundColor: 'transparent',
     borderRadius: 20,
     padding: 16,
