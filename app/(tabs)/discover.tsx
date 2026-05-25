@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   headerTitle: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: '800',
     color: Colors.textPrimary,
     letterSpacing: -0.5,
@@ -207,23 +207,22 @@ const styles = StyleSheet.create({
   // Search
   searchContainer: {
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 16,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFF',
-    borderRadius: 20,
+    borderRadius: 12,
     paddingHorizontal: 16,
-    height: 56,
+    height: 48,
     gap: 12,
     borderWidth: 1,
-    borderColor: Colors.border,
-    ...Shadows.sm,
+    borderColor: '#E5E7EB',
   },
   searchInput: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 15,
     color: Colors.textPrimary,
   },
 
