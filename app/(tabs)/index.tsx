@@ -310,7 +310,8 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingTop: 110, // Increased to fully clear the 90px tall floating header
-    paddingBottom: 20,
+    paddingBottom: 150, // Increased to clear bottom navigation and ensure full scroll
+    flexGrow: 1, // Ensures scroll view expands properly
   },
   // Header
   header: {
