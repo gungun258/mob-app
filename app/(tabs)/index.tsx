@@ -87,7 +87,7 @@ export default function HomeScreen() {
             <View style={styles.notifDot} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.creditsChip}>
-            <MaterialCommunityIcons name="circle-multiple-outline" size={16} color="#FFF" style={{ transform: [{ rotate: '45deg' }] }} />
+            <MaterialCommunityIcons name="circle-multiple-outline" size={16} color="#FFF" />
             <Text style={styles.creditsText}>250</Text>
           </TouchableOpacity>
         </View>
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   creditsText: {
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '700',
     color: '#FFF',
   },
@@ -380,14 +380,12 @@ const styles = StyleSheet.create({
   },
   notifDot: {
     position: 'absolute',
-    top: 4,
-    right: 4,
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#FF3B30',
-    borderWidth: 2,
-    borderColor: '#FFF',
+    top: 0,
+    right: 0,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#FF2E93',
   },
 
   heroCard: {
