@@ -251,10 +251,10 @@ const styles = StyleSheet.create({
 
   // Horizontal Seller Cards
   sellerHorizontalCard: {
-    width: 108,
+    width: 130,
     backgroundColor: '#FFF',
-    borderRadius: 12,
-    padding: 8,
+    borderRadius: 16,
+    padding: 12,
     alignItems: 'flex-start',
     ...Shadows.sm,
     borderWidth: 1,
@@ -263,13 +263,13 @@ const styles = StyleSheet.create({
   sellerSquareAvatar: {
     width: '100%',
     aspectRatio: 1,
-    borderRadius: 8,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
   sellerSquareAvatarText: {
-    fontSize: 32,
+    fontSize: 40,
     fontWeight: '800',
     color: '#FFF',
   },
@@ -278,33 +278,33 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   sellerHorizontalName: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: '700',
     color: Colors.textPrimary,
     marginBottom: 2,
   },
   sellerHorizontalInfo: {
-    fontSize: 10,
+    fontSize: 11,
     color: Colors.textTertiary,
     marginBottom: 6,
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 2,
+    gap: 3,
   },
   ratingText: {
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: '700',
     color: '#F59E0B',
   },
 
   // View All Card
   viewAllCard: {
-    width: 108,
-    height: 140, // match standard card height
+    width: 130,
+    height: 180, // matched to roughly the new card height
     backgroundColor: '#F5F3FF', // subtle purple tint
-    borderRadius: 12,
+    borderRadius: 16,
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
