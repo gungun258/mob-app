@@ -83,11 +83,11 @@ export default function HomeScreen() {
         </View>
         <View style={styles.headerRight}>
           <TouchableOpacity style={styles.notifBtn}>
-            <Feather name="bell" size={24} color={Colors.textPrimary} />
+            <Feather name="bell" size={28} color={Colors.textPrimary} />
             <View style={styles.notifDot} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.creditsChip}>
-            <MaterialCommunityIcons name="circle-multiple-outline" size={16} color="#FFF" />
+            <MaterialCommunityIcons name="circle-multiple-outline" size={18} color="#FFF" />
             <Text style={styles.creditsText}>250</Text>
           </TouchableOpacity>
         </View>
@@ -363,18 +363,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     backgroundColor: '#F59E0B',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 24,
   },
   creditsText: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '700',
     color: '#FFF',
   },
   notifBtn: {
-    width: 32,
-    height: 32,
+    width: 36,
+    height: 36,
     alignItems: 'center',
     justifyContent: 'center',
   },
