@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 25,
-    fontWeight: '600',
+    fontWeight: '700',
     color: '#1F2937',
     letterSpacing: -0.5,
     lineHeight: 32,
