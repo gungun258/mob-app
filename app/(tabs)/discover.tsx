@@ -28,7 +28,7 @@ export default function DiscoverScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+      <View style={[styles.fixedHeader, Platform.OS === 'web' && ({ backdropFilter: 'blur(12px)' } as any)]}>
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Discover</Text>
@@ -37,11 +37,11 @@ export default function DiscoverScreen() {
         {/* Search Bar */}
         <View style={styles.searchContainer}>
           <View style={styles.searchBar}>
-            <Ionicons name="search" size={20} color={Colors.textTertiary} />
+            <Ionicons name="search-outline" size={20} color="#9CA3AF" />
             <TextInput
               style={styles.searchInput}
               placeholder="Search sellers, backgrounds..."
-              placeholderTextColor={Colors.textTertiary}
+              placeholderTextColor="#9CA3AF"
               value={searchQuery}
               onChangeText={setSearchQuery}
             />
@@ -52,11 +52,17 @@ export default function DiscoverScreen() {
             )}
           </View>
         </View>
+      </View>
+
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
 
         {/* Followed By You */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Followed By You</Text>
+            <Text style={styles.sectionTitle}>Followed by You</Text>
+            <TouchableOpacity onPress={() => router.push('/view-all-sellers')}>
+              <Text style={styles.sectionViewAllText}>View All</Text>
+            </TouchableOpacity>
           </View>
           <FlatList
             horizontal
@@ -71,7 +77,7 @@ export default function DiscoverScreen() {
                 onPress={() => router.push('/seller-profile')}
               >
                 <LinearGradient
-                  colors={index % 2 === 0 ? ['#C079FF', '#FF4B8B'] : ['#8F6EFF', '#F542A7']}
+                  colors={['#C084FC', '#EC4899']}
                   style={styles.sellerSquareAvatar}
                 >
                   <Text style={styles.sellerSquareAvatarText}>{item.name.charAt(0)}</Text>
@@ -80,8 +86,8 @@ export default function DiscoverScreen() {
                   <Text style={styles.sellerHorizontalName} numberOfLines={1}>{item.name}</Text>
                   <Text style={styles.sellerHorizontalInfo}>{item.listings} listings</Text>
                   <View style={styles.ratingRow}>
-                    <Ionicons name="star" size={10} color="#F59E0B" />
-                    <Text style={styles.ratingText}>4.9</Text>
+                    <Ionicons name="star" size={12} color="#F59E0B" />
+                    <Text style={styles.ratingText}>{item.rating || '4.9'}</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -89,7 +95,7 @@ export default function DiscoverScreen() {
             ListFooterComponent={() => (
               <TouchableOpacity style={styles.viewAllCard} activeOpacity={0.8} onPress={() => router.push('/view-all-sellers')}>
                 <View style={styles.viewAllIconContainer}>
-                  <Ionicons name="arrow-forward" size={24} color={Colors.primary} />
+                  <Ionicons name="chevron-forward" size={24} color="#A855F7" />
                 </View>
                 <Text style={styles.viewAllCardText}>View All</Text>
               </TouchableOpacity>
@@ -101,10 +107,13 @@ export default function DiscoverScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Top Trending Sellers</Text>
+            <TouchableOpacity onPress={() => router.push('/view-all-sellers')}>
+              <Text style={styles.sectionViewAllText}>View All</Text>
+            </TouchableOpacity>
           </View>
           <FlatList
             horizontal
-            data={topSellers.slice(2, 6)}
+            data={topSellers.slice(4, 8)}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.horizontalList}
             keyExtractor={item => 'trending-' + item.id}
@@ -115,7 +124,7 @@ export default function DiscoverScreen() {
                 onPress={() => router.push('/seller-profile')}
               >
                 <LinearGradient
-                  colors={index % 2 === 0 ? ['#38BDF8', '#0284C7'] : ['#2DD4BF', '#0F766E']}
+                  colors={['#3B82F6', '#06B6D4']}
                   style={styles.sellerSquareAvatar}
                 >
                   <Text style={styles.sellerSquareAvatarText}>{item.name.charAt(0)}</Text>
@@ -124,8 +133,8 @@ export default function DiscoverScreen() {
                   <Text style={styles.sellerHorizontalName} numberOfLines={1}>{item.name}</Text>
                   <Text style={styles.sellerHorizontalInfo}>{item.listings} listings</Text>
                   <View style={styles.ratingRow}>
-                    <Ionicons name="star" size={10} color="#F59E0B" />
-                    <Text style={styles.ratingText}>4.8</Text>
+                    <Ionicons name="star" size={12} color="#F59E0B" />
+                    <Text style={styles.ratingText}>{item.rating || '4.8'}</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -133,7 +142,7 @@ export default function DiscoverScreen() {
             ListFooterComponent={() => (
               <TouchableOpacity style={styles.viewAllCard} activeOpacity={0.8} onPress={() => router.push('/view-all-sellers')}>
                 <View style={styles.viewAllIconContainer}>
-                  <Ionicons name="chevron-forward" size={24} color="#C079FF" />
+                  <Ionicons name="chevron-forward" size={24} color="#A855F7" />
                 </View>
                 <Text style={styles.viewAllCardText}>View All</Text>
               </TouchableOpacity>
@@ -189,42 +198,54 @@ const styles = StyleSheet.create({
     ...(Platform.OS === 'web' ? { height: '100dvh', overflow: 'hidden' } : {}),
   },
   scrollContent: {
+    paddingTop: 140,
     paddingBottom: 120,
     flexGrow: 1,
   },
+  fixedHeader: {
+    position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 100,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.04)',
+  },
   header: {
     paddingHorizontal: 20,
-    paddingTop: 8,
+    paddingTop: 16,
     paddingBottom: 4,
   },
   headerTitle: {
-    fontSize: 25,
+    fontSize: 26,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#475569',
+    marginBottom: 8,
     letterSpacing: -0.5,
-    lineHeight: 32,
   },
 
   // Search
   searchContainer: {
     paddingHorizontal: 20,
-    paddingTop: 16,
+    paddingTop: 0,
+    paddingBottom: 16,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFF',
-    borderRadius: 24, // perfect pill shape for 48px height
+    borderRadius: 12,
     paddingHorizontal: 16,
-    height: 48,
+    height: 50,
     gap: 12,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#0000001a',
   },
   searchInput: {
     flex: 1,
-    fontSize: 15,
-    color: Colors.textPrimary,
+    fontSize: 17,
+    color: '#334155',
   },
 
   // Sections
@@ -239,10 +260,15 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: Colors.textPrimary,
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#0F172A',
     letterSpacing: -0.3,
+  },
+  sectionViewAllText: {
+    fontSize: 16,
+    color: '#A855F7',
+    fontWeight: '500',
   },
   horizontalList: {
     paddingHorizontal: 16,
@@ -252,13 +278,18 @@ const styles = StyleSheet.create({
   // Horizontal Seller Cards
   sellerHorizontalCard: {
     width: 160,
+    height: 250,
     backgroundColor: '#FFF',
     borderRadius: 20,
     padding: 16,
     alignItems: 'flex-start',
-    ...Shadows.sm,
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.02)',
+    borderColor: '#F1F5F9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.03,
+    shadowRadius: 8,
+    elevation: 2,
   },
   sellerSquareAvatar: {
     width: '100%',
@@ -269,8 +300,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sellerSquareAvatarText: {
-    fontSize: 48,
-    fontWeight: '800',
+    fontSize: 24,
+    fontWeight: '700',
     color: '#FFF',
   },
   sellerHorizontalInfoBox: {
@@ -280,17 +311,18 @@ const styles = StyleSheet.create({
   sellerHorizontalName: {
     fontSize: 16,
     fontWeight: '700',
-    color: Colors.textPrimary,
-    marginBottom: 4,
+    color: '#0F172A',
+    marginBottom: 6,
   },
   sellerHorizontalInfo: {
     fontSize: 13,
-    color: Colors.textTertiary,
-    marginBottom: 8,
+    color: '#64748B',
+    marginBottom: 12, // gap before the rating
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'center', // centers the rating row inside the card
     gap: 4,
   },
   ratingText: {
@@ -302,23 +334,24 @@ const styles = StyleSheet.create({
   // View All Card
   viewAllCard: {
     width: 160,
-    height: 220, // matched to roughly the new card height
-    backgroundColor: '#F5F3FF', // subtle purple tint
-    borderRadius: 20,
-    padding: 16,
+    height: 110,
+    backgroundColor: 'transparent', 
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1.5,
+    borderWidth: 1,
     borderStyle: 'dashed',
-    borderColor: '#7C3AED',
+    borderColor: '#D8B4FE',
+    alignSelf: 'flex-start',
+    marginTop: 16,
   },
   viewAllIconContainer: {
     marginBottom: 4,
   },
   viewAllCardText: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: '#7C3AED',
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#A855F7',
   },
 
   // Explore All Button
