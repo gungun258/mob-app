@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     borderTopColor: 'rgba(0, 0, 0, 0.04)',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    zIndex: 100,
     elevation: 0,
     shadowOpacity: 0,
   },
