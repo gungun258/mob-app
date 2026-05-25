@@ -362,14 +362,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    backgroundColor: '#F59E0B',
-    paddingHorizontal: 16,
+    backgroundColor: '#FF9F0A', // matching exact orange-yellow
+    paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 24,
+    borderRadius: 8, // reduced border radius as requested
+    shadowColor: '#FF9F0A',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
   },
   creditsText: {
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: '800',
     color: '#FFF',
   },
   notifBtn: {
